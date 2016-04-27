@@ -1,0 +1,16 @@
+1.) Evaluate his own answers. By scoring for 0-10. 0 is user left the conversation. 10 user added 10 lines.
+
+2.) Give the answer not only by the last line, but the last 10 lines. Goal: inderstand if someone teaches "you are" instead of "i am"
+
+3.) Evaluate the learnt knowledge. If an answer comes up twice, it add +1 to the end of the line in the knowledge.csv file!
+eg. What's your name
+What's your name
+Howdy
+Howdy
+What's my name?
+What's your name?
+Howdy
+
+4.) Do not count lower/uppercases and punctuation.
+
+5.) Get prepared for typos.
