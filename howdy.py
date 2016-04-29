@@ -29,7 +29,14 @@ def conversation(question):
 	    print "Howdy: " + line[1]
 	    answer = line[1]
 	    next_question = raw_input("You: ")
-
+	    for line in knowledge:
+		if (line[0].translate(string.maketrans("",""), string.punctuation).lower() \
+		     == answer.translate(string.maketrans("",""), string.punctuation).lower() \
+		     and line[1].translate(string.maketrans("",""), string.punctuation).lower() \
+		     == next_question.translate(string.maketrans("",""), string.punctuation).lower()):
+		    print "marvan"
+		    
+		    
 #	    Save it to the sentences file.
 	    target = open(sentences, 'a')
 	    target.write(answer + ";;;" + next_question + ";;;" + "1" + "\n")

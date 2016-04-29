@@ -14,3 +14,8 @@ Howdy
 4.) Do not count lower/uppercases and punctuation.
 
 5.) Get prepared for typos.
+
+
+============
+for line in knowledge:
+    print line[0] + ";;;" + line[1] + ";;;" + line[2]
