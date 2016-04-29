@@ -1,3 +1,14 @@
+#=================
+#IMPORT COOL STUFF
+#=================
+import string
+
+#=========
+#VARIABLES
+#=========
+sentences = 'knowledge_sentences.csv'
+words = 'knowledge_words.csv'
+
 #=========================
 #THE CONVERSATION FUNCTION
 #=========================
@@ -5,7 +16,7 @@ def conversation(question):
 
 #Open the file. Read lines into a list of lists.
     knowledge = []
-    with open('knowledge.csv', 'r') as content_file:
+    with open(sentences, 'r') as content_file:
 	    for line in content_file:
     		knowledge.append(line.strip().split(';;;'))
 	    content_file.close()
@@ -13,20 +24,40 @@ def conversation(question):
 #Check if there is answer in the lists. If yes, gives back the answer. If no, gives back the question.
     answer = ""
     for line in knowledge:
-	if line[0] == question:
+	if line[0].translate(string.maketrans("",""), string.punctuation).lower() \
+		== question.translate(string.maketrans("",""), string.punctuation).lower():
 	    print "Howdy: " + line[1]
 	    answer = line[1]
-	    next_question = raw_input()
-	    target = open('knowledge.csv', 'a')
+	    next_question = raw_input("You: ")
+
+#	    Save it to the sentences file.
+	    target = open(sentences, 'a')
 	    target.write(answer + ";;;" + next_question + ";;;" + "1" + "\n")
 	    target.close()
+
+#	    Save it to the words file.
+	    target = open(words, 'a')
+	    next_question2 = next_question.replace(" ","\n")
+	    target.write(next_question2 + "\n")
+	    target.close()
+
 	    return next_question
+
     if answer == "":
 	    print "Howdy: " + question
 	    next_question = raw_input("You: ")
-	    target = open('knowledge.csv', 'a')
+
+#	    Save it to the sentences file.
+	    target = open(sentences, 'a')
 	    target.write(question + ";;;" + next_question + ";;;" + "1" + "\n")
 	    target.close()
+
+#	    Save it to the words file.
+	    target = open(words, 'a')
+	    next_question2 = next_question.replace(" ","\n")
+	    target.write(next_question2 + "\n")
+	    target.close()
+
 	    return next_question
 
 
@@ -40,5 +71,5 @@ question = ""
 question = raw_input("You: ")
 
 #calling the conversation function
-while question != "exit":
+while question != "bye":
     question = conversation(question)
