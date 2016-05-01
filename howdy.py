@@ -8,6 +8,7 @@ import string
 #=========
 sentences = 'knowledge_sentences.csv'
 words = 'knowledge_words.csv'
+testfile = 'knowledge_test.csv'
 
 #=========================
 #THE CONVERSATION FUNCTION
@@ -34,13 +35,14 @@ def conversation(question):
 		     == answer.translate(string.maketrans("",""), string.punctuation).lower() \
 		     and line[1].translate(string.maketrans("",""), string.punctuation).lower() \
 		     == next_question.translate(string.maketrans("",""), string.punctuation).lower()):
-		    print "marvan"
-		    
-		    
+		    line[2]= str(int(float(line[2]))+1)
+		    print line
+
 #	    Save it to the sentences file.
-	    target = open(sentences, 'a')
-	    target.write(answer + ";;;" + next_question + ";;;" + "1" + "\n")
-	    target.close()
+	    with open(sentences, 'w') as target:
+		for elements in knowledge:
+		    target.write(elements[0] + ";;;" + elements[1] + ";;;" + elements[2] + "\n")
+		target.close()
 
 #	    Save it to the words file.
 	    target = open(words, 'a')
