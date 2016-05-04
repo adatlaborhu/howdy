@@ -2,6 +2,7 @@
 #IMPORT COOL STUFF
 #=================
 import string
+import json
 
 #=========
 #VARIABLES
@@ -63,26 +64,15 @@ def conversation(question):
 	target.close()
 	return next_question
 
-#	    Save it to the words file.
-#	    target = open(words, 'a')
-#	    next_question2 = next_question.replace(" ","\n")
-#	    target.write(next_question2 + "\n")
-#	    target.close()
-
-
+#If howdy doesn't know the answer, he gives back the same question as an answer.
     if wereanswer is False:
-	    print "Howdy: " + question
+	    answer = question
+	    print "Howdy: " + answer
 	    next_question = raw_input("You: ")
 
-#	    Save it to the sentences file.
+#Save it to the sentences file.
 	    target = open(sentences, 'a')
-	    target.write(question + ";;;" + next_question + ";;;" + "1" + "\n")
-	    target.close()
-
-#	    Save it to the words file.
-	    target = open(words, 'a')
-	    next_question2 = next_question.replace(" ","\n")
-	    target.write(next_question2 + "\n")
+	    target.write(answer + ";;;" + next_question + ";;;" + "1" + "\n")
 	    target.close()
 	    return next_question
 
