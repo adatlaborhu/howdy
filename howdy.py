@@ -4,12 +4,38 @@
 import string
 import json
 
-#=========
-#VARIABLES
-#=========
+#==============
+#MAIN VARIABLES
+#==============
 sentences = 'knowledge_sentences.csv'
-words = 'knowledge_words.csv'
+words = 'knowledge_words.json'
 testfile = 'knowledge_test.csv'
+
+#==============================================
+#THE REMOVE PUNCTUATION AND UPPERCASES FUNCTION
+#==============================================
+def rmpu(x):
+    return x.translate(string.maketrans("",""), string.punctuation).lower()
+
+#==============================
+#THE BASIC ML FUNCTION ON WORDS
+#==============================
+#Howdy learns what words can be correct answers for one word - based on the user's answers.
+def mlwords(answer, next_question):
+    worddict = ""
+    with open('knowledge_words.json') as data_file:
+	worddict = json.load(data_file)
+    for aword in list(set(rmpu(answer).split())):
+	if aword not in worddict:
+	    worddict[aword] = {}
+	for qword in list(set(rmpu(next_question).split())):
+	    if qword in worddict[aword]:
+		worddict[aword][qword] += 1
+	    else:
+		worddict[aword][qword] = 1
+
+    with open('knowledge_words.json', 'w') as fp:
+	json.dump(worddict, fp)
 
 #=========================
 #THE CONVERSATION FUNCTION
@@ -31,21 +57,18 @@ def conversation(question):
     wereanswer = False
     weresamenext = False
     for line in knowledge:
-	if line[0].translate(string.maketrans("",""), string.punctuation).lower() \
-		== question.translate(string.maketrans("",""), string.punctuation).lower():
+	if rmpu(line[0]) == rmpu(question):
 	    answer = line[1]
 	    print "Howdy: " + answer
 	    next_question = raw_input("You: ")
 	    wereanswer = True
+	    mlwords(answer, next_question)
 	    break
 
 #If there was an answer, check if he got the same next_question to that answer before. If yes, add + 1.
     if wereanswer is True:
 	for line in knowledge:
-	    if (line[0].translate(string.maketrans("",""), string.punctuation).lower() \
-		 == answer.translate(string.maketrans("",""), string.punctuation).lower() \
-		and line[1].translate(string.maketrans("",""), string.punctuation).lower() \
-	        == next_question.translate(string.maketrans("",""), string.punctuation).lower()):
+	    if (rmpu(line[0]) == rmpu(answer) and rmpu(line[1]) == rmpu(next_question)):
 		    line[2]= line[2]+1
 		    knowledge = sorted(knowledge,key=lambda x: x[2], reverse=True)
 		    weresamenext = True
@@ -69,6 +92,7 @@ def conversation(question):
 	    answer = question
 	    print "Howdy: " + answer
 	    next_question = raw_input("You: ")
+	    mlwords(answer, next_question)
 
 #Save it to the sentences file.
 	    target = open(sentences, 'a')
