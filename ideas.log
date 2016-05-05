@@ -2,6 +2,13 @@
 
 2.) Give the answer not only by the last line, but the last 10 lines. Goal: inderstand if someone teaches "you are" instead of "i am"
 
+3.) Identify stopwords automatically.
+
+4.) Identify reactions by users (eg. words), that predicts longer conversations.
+
+5.) Ger prepared for typos.
+
+=================
 DONE --- 3.) Evaluate the learnt knowledge. If an answer comes up twice, it add +1 to the end of the line in the knowledge.csv file!
 eg. What's your name
 What's your name

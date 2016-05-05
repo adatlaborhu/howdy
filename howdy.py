@@ -25,6 +25,7 @@ def mlwords(answer, next_question):
     worddict = ""
     with open('knowledge_words.json') as data_file:
 	worddict = json.load(data_file)
+    data_file.close()
     for aword in list(set(rmpu(answer).split())):
 	if aword not in worddict:
 	    worddict[aword] = {}
@@ -36,6 +37,7 @@ def mlwords(answer, next_question):
 
     with open('knowledge_words.json', 'w') as fp:
 	json.dump(worddict, fp)
+    fp.close()
 
 #=========================
 #THE CONVERSATION FUNCTION
