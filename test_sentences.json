@@ -1,5 +1,5 @@
-{"my name is tomi": [0, 1, 10, "my", "name", "is", "tomi"],
-"your name is tomi": [0, 1, 10, "your", "name", "is", "tomi"],
-"hello bello bye fine": [0, 1, 10, "hello", "bello", "bye", "fine"],
-"okkay tomi": [0, 1, 10, "okkay", "tomi"],
-"fine my name is tomi": [0, 1, 10, "fine", "my", "name", "is", "tomi"]}
+{"my name is tomi": [0, 1, 10, ["my", "name", "is", "tomi"]],
+"your name is tomi": [0, 1, 10, ["your", "name", "is", "tomi"]],
+"hello bello bye fine": [0, 1, 10, ["hello", "bello", "bye", "fine"]],
+"okkay tomi": [0, 1, 10, ["okkay", "tomi"]],
+"fine my name is tomi": [0, 1, 10, ["fine", "my", "name", "is", "tomi"]]}

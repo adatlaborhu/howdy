@@ -7,6 +7,7 @@ def rmpu(x):
 
 question = "lets okay to you"
 worddict = ""
+test_sentences = ""
 
 with open('knowledge_words.json') as data_file:
     worddict = json.load(data_file)
@@ -27,12 +28,17 @@ for idx,lword in enumerate(a):
 	print a[idx], d.most_common(3)
 	for k, v in d.most_common(3):
 	    for xxx in test_sentences:
-		if k in test_sentences[xxx]:
+		if k in test_sentences[xxx][3]:
+		    print test_sentences[xxx][3]
 		    print v
 		    test_sentences[xxx][0] += v
 
 print test_sentences
-max(test_sentences, key=test_sentences.get)
+print max(test_sentences, key=test_sentences.get)
+
+for k in test_sentences:
+	print test_sentences[k][0]
+
 
 #	maximum = max(worddict[a[idx]], key=worddict[a[idx]].get)
 #	print maximum, worddict[a[idx]][maximum]

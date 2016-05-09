@@ -3,12 +3,11 @@
 #=================
 import string
 import json
-from collections import Counter
 
 #==============
 #MAIN VARIABLES
 #==============
-sentences = 'test_sentences.json'
+sentences = 'knowledge_sentences.csv'
 words = 'knowledge_words.json'
 testfile = 'knowledge_test.csv'
 
@@ -44,61 +43,29 @@ def mlwords(answer, next_question):
 #THE CONVERSATION FUNCTION
 #=========================
 def conversation(question):
-    worddict = ""
-    knowledge = ""
 
-#Open the known sentences and the known words.
-    with open(words) as data_file:
-	worddict = json.load(data_file)
-    data_file.close()
-
-    with open(sentences) as data_file:
-	knowledge = json.load(data_file)
-    data_file.close()
-
-    print worddict
-    print knowledge
-
-#    knowledge = []
-#    with open(sentences, 'r') as content_file:
-#	alma = 0
-#	for line in content_file:
-#    	    knowledge.append(line.strip().split(';;;'))
-#	    knowledge[alma][2] = int(float(knowledge[alma][2]))
-#	    alma = alma + 1
-#	content_file.close()
+#Open the file. Read lines into a list of lists.
+    knowledge = []
+    with open(sentences, 'r') as content_file:
+	alma = 0
+	for line in content_file:
+    	    knowledge.append(line.strip().split(';;;'))
+	    knowledge[alma][2] = int(float(knowledge[alma][2]))
+	    alma = alma + 1
+	content_file.close()
 
 #Check if there is answer in the lists. If yes, gives back the answer.
     answer = ""
     wereanswer = False
     weresamenext = False
-    qs = question.split()
-    for idx,lword in enumerate(qs):
-	if qs[idx] in worddict:
-	    d = Counter(worddict[qs[idx]])
-	    for k, v in d.most_common(3):
-		for xxx in knowledge:
-		    if k in knowledge[xxx][3]:
-			knowledge[xxx][0] += v
-    for checker in knowledge:
-	if knowledge[checker][0] > 0:
+    for line in knowledge:
+	if rmpu(line[0]) == rmpu(question):
+	    answer = line[1]
+	    print "Howdy: " + answer
+	    next_question = raw_input("You: ")
 	    wereanswer = True
+	    mlwords(answer, next_question)
 	    break
-
-    if wereanswer is True:
-	answer = max(knowledge, key=knowledge.get)
-	print "Howdy: " + answer
-	next_question = raw_input("You: ")
-	mlwords(answer, next_question)
-
-#    for line in knowledge:
-#	if rmpu(line[0]) == rmpu(question):
-#	    answer = line[1]
-#	    print "Howdy: " + answer
-#	    next_question = raw_input("You: ")
-#	    wereanswer = True
-#	    mlwords(answer, next_question)
-#	    break
 
 #If there was an answer, check if he got the same next_question to that answer before. If yes, add + 1.
     if wereanswer is True:
