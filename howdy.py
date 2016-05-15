@@ -4,6 +4,7 @@
 import string
 import json
 from collections import Counter
+import re
 
 #==============
 #MAIN VARIABLES
@@ -18,6 +19,9 @@ testfile = 'knowledge_test.csv'
 def rmpu(x):
     return x.translate(string.maketrans("",""), string.punctuation).lower()
 
+def rmpu2(x):
+    return re.sub("[\.\t\,\:;\(\)\.\!\?]", "", x, 0, 0).lower()
+
 #==============================
 #THE BASIC ML FUNCTION ON WORDS
 #==============================
@@ -27,17 +31,39 @@ def mlwords(answer, next_question):
     with open('knowledge_words.json') as data_file:
 	worddict = json.load(data_file)
     data_file.close()
-    for aword in list(set(rmpu(answer).split())):
+    for aword in list(set(rmpu2(answer).split())):
 	if aword not in worddict:
 	    worddict[aword] = {}
-	for qword in list(set(rmpu(next_question).split())):
+	for qword in list(set(rmpu2(next_question).split())):
 	    if qword in worddict[aword]:
 		worddict[aword][qword] += 1
 	    else:
 		worddict[aword][qword] = 1
 
-    with open('knowledge_words.json', 'w') as fp:
+    with open(words, 'w') as fp:
 	json.dump(worddict, fp)
+    fp.close()
+
+#===============================
+#THE SAVE NEXT QUESTION FUNCTION
+#===============================
+def save_next_question(next_question, knowledge_new):
+    print "fire save next question"
+    weresamenext = False
+    rmpu_question = rmpu(next_question)
+    for line in knowledge_new:
+	if rmpu2(line) == rmpu_question:
+	    knowledge_new[line][1] += 1
+	    weresamenext = True
+	    break
+
+    if weresamenext == False:
+	    new_sentence = [0, 1, 10]
+	    new_sentence.append(rmpu_question.split())
+	    knowledge_new[next_question] = new_sentence
+
+    with open(sentences, 'w') as fp:
+	json.dump(knowledge_new, fp)
     fp.close()
 
 #=========================
@@ -45,7 +71,8 @@ def mlwords(answer, next_question):
 #=========================
 def conversation(question):
     worddict = ""
-    knowledge = ""
+    knowledge = {}
+    knowledge_new = ""
 
 #Open the known sentences and the known words.
     with open(words) as data_file:
@@ -56,18 +83,12 @@ def conversation(question):
 	knowledge = json.load(data_file)
     data_file.close()
 
+    with open(sentences) as data_file:
+	knowledge_new = json.load(data_file)
+    data_file.close()
+
     print worddict
     print knowledge
-
-#    knowledge = []
-#    with open(sentences, 'r') as content_file:
-#	alma = 0
-#	for line in content_file:
-#    	    knowledge.append(line.strip().split(';;;'))
-#	    knowledge[alma][2] = int(float(knowledge[alma][2]))
-#	    alma = alma + 1
-#	content_file.close()
-
 #Check if there is answer in the lists. If yes, gives back the answer.
     answer = ""
     wereanswer = False
@@ -84,42 +105,14 @@ def conversation(question):
 	if knowledge[checker][0] > 0:
 	    wereanswer = True
 	    break
+    print knowledge
 
     if wereanswer is True:
 	answer = max(knowledge, key=knowledge.get)
 	print "Howdy: " + answer
 	next_question = raw_input("You: ")
 	mlwords(answer, next_question)
-
-#    for line in knowledge:
-#	if rmpu(line[0]) == rmpu(question):
-#	    answer = line[1]
-#	    print "Howdy: " + answer
-#	    next_question = raw_input("You: ")
-#	    wereanswer = True
-#	    mlwords(answer, next_question)
-#	    break
-
-#If there was an answer, check if he got the same next_question to that answer before. If yes, add + 1.
-    if wereanswer is True:
-	for line in knowledge:
-	    if (rmpu(line[0]) == rmpu(answer) and rmpu(line[1]) == rmpu(next_question)):
-		    line[2]= line[2]+1
-		    knowledge = sorted(knowledge,key=lambda x: x[2], reverse=True)
-		    weresamenext = True
-
-#Save it to the sentences file.
-    if (wereanswer is True and weresamenext is True):
-	with open(sentences, 'w') as target:
-	    for elements in knowledge:
-		target.write(elements[0] + ";;;" + elements[1] + ";;;" + str(elements[2]) + "\n")
-	    target.close()
-	    return next_question
-
-    if (wereanswer is True and weresamenext is False):
-	target = open(sentences, 'a')
-	target.write(answer + ";;;" + next_question + ";;;" + "1" + "\n")
-	target.close()
+	save_next_question(next_question, knowledge_new)
 	return next_question
 
 #If howdy doesn't know the answer, he gives back the same question as an answer.
@@ -128,13 +121,8 @@ def conversation(question):
 	    print "Howdy: " + answer
 	    next_question = raw_input("You: ")
 	    mlwords(answer, next_question)
-
-#Save it to the sentences file.
-	    target = open(sentences, 'a')
-	    target.write(answer + ";;;" + next_question + ";;;" + "1" + "\n")
-	    target.close()
+	    save_next_question(next_question, knowledge_new)
 	    return next_question
-
 
 #==========================
 #INTRO & CALLING FUNTCTIONS
