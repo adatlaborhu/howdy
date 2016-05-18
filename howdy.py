@@ -95,12 +95,19 @@ def conversation(question):
     for idx,lword in enumerate(qs):
 	qs[idx]=rmpu(qs[idx])
 	if qs[idx] in worddict:
+	    print qs[idx]
 	    d = Counter(worddict[qs[idx]])
+	    print d
+	    print d.most_common(3)
 	    for k, v in d.most_common(3):
+		print k
+		print v
 		for xxx in knowledge:
 		    if k in knowledge[xxx][3]:
 			knowledge[xxx][0] += v
+			print knowledge[xxx]
     for checker in knowledge:
+	print knowledge[checker][0]
 	if knowledge[checker][0] > 0:
 	    wereanswer = True
 	    break
