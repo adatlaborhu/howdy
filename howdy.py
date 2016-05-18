@@ -48,7 +48,7 @@ def mlwords(answer, next_question):
 #THE SAVE NEXT QUESTION FUNCTION
 #===============================
 def save_next_question(next_question, knowledge_new):
-    print "fire save next question"
+#    print "fire save next question"
     weresamenext = False
     rmpu_question = rmpu(next_question)
     for line in knowledge_new:
@@ -87,14 +87,13 @@ def conversation(question):
 	knowledge_new = json.load(data_file)
     data_file.close()
 
-    print worddict
-    print knowledge
 #Check if there is answer in the lists. If yes, gives back the answer.
     answer = ""
     wereanswer = False
     weresamenext = False
     qs = question.split()
     for idx,lword in enumerate(qs):
+	qs[idx]=rmpu(qs[idx])
 	if qs[idx] in worddict:
 	    d = Counter(worddict[qs[idx]])
 	    for k, v in d.most_common(3):
@@ -105,7 +104,6 @@ def conversation(question):
 	if knowledge[checker][0] > 0:
 	    wereanswer = True
 	    break
-    print knowledge
 
     if wereanswer is True:
 	answer = max(knowledge, key=knowledge.get)
