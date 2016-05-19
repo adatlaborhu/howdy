@@ -9,7 +9,7 @@ import re
 #==============
 #MAIN VARIABLES
 #==============
-sentences = 'test_sentences.json'
+sentences = 'knowledge_sentences.json'
 words = 'knowledge_words.json'
 testfile = 'knowledge_test.csv'
 
@@ -20,7 +20,7 @@ def rmpu(x):
     return x.translate(string.maketrans("",""), string.punctuation).lower()
 
 def rmpu2(x):
-    return re.sub("[\.\t\,\:;\(\)\.\!\?]", "", x, 0, 0).lower()
+    return re.sub("[\.\t\,\:;\(\)\.\!\?\']", "", x, 0, 0).lower()
 
 #==============================
 #THE BASIC ML FUNCTION ON WORDS
@@ -41,7 +41,7 @@ def mlwords(answer, next_question):
 		worddict[aword][qword] = 1
 
     with open(words, 'w') as fp:
-	json.dump(worddict, fp)
+	json.dump(worddict, fp, sort_keys=True, indent=4, separators=(',', ': '))
     fp.close()
 
 #===============================
@@ -63,7 +63,7 @@ def save_next_question(next_question, knowledge_new):
 	    knowledge_new[next_question] = new_sentence
 
     with open(sentences, 'w') as fp:
-	json.dump(knowledge_new, fp)
+	json.dump(knowledge_new, fp, sort_keys=True, indent=4, separators=(',', ': '))
     fp.close()
 
 #=========================

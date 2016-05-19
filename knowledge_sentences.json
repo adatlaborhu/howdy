@@ -1,0 +1,415 @@
+{
+    "Are you?": [
+        0,
+        1,
+        10,
+        [
+            "are",
+            "you"
+        ]
+    ],
+    "Do what?": [
+        0,
+        1,
+        10,
+        [
+            "do",
+            "what"
+        ]
+    ],
+    "Do you realize questions?": [
+        0,
+        1,
+        10,
+        [
+            "do",
+            "you",
+            "realize",
+            "questions"
+        ]
+    ],
+    "Do you?": [
+        0,
+        1,
+        10,
+        [
+            "do",
+            "you"
+        ]
+    ],
+    "I do, man!": [
+        0,
+        1,
+        10,
+        [
+            "i",
+            "do",
+            "man"
+        ]
+    ],
+    "I like it!": [
+        0,
+        1,
+        10,
+        [
+            "i",
+            "like",
+            "it"
+        ]
+    ],
+    "I like you!": [
+        0,
+        1,
+        10,
+        [
+            "i",
+            "like",
+            "you"
+        ]
+    ],
+    "I try my best!": [
+        0,
+        1,
+        10,
+        [
+            "i",
+            "try",
+            "my",
+            "best"
+        ]
+    ],
+    "I'll do, I promise!": [
+        0,
+        1,
+        10,
+        [
+            "ill",
+            "do",
+            "i",
+            "promise"
+        ]
+    ],
+    "I'm fine, thanks!": [
+        0,
+        1,
+        10,
+        [
+            "im",
+            "fine",
+            "thanks"
+        ]
+    ],
+    "I'm good, and you?": [
+        0,
+        1,
+        10,
+        [
+            "im",
+            "good",
+            "and",
+            "you"
+        ]
+    ],
+    "I'm good. What's up with you?": [
+        0,
+        1,
+        10,
+        [
+            "im",
+            "good",
+            "whats",
+            "up",
+            "with",
+            "you"
+        ]
+    ],
+    "I'm in!": [
+        0,
+        1,
+        10,
+        [
+            "im",
+            "in"
+        ]
+    ],
+    "I'm leaving for now, okkay?": [
+        0,
+        1,
+        10,
+        [
+            "im",
+            "leaving",
+            "for",
+            "now",
+            "okkay"
+        ]
+    ],
+    "It's okay.": [
+        0,
+        1,
+        10,
+        [
+            "its",
+            "okay"
+        ]
+    ],
+    "Let's talk about something nice!": [
+        0,
+        1,
+        10,
+        [
+            "lets",
+            "talk",
+            "about",
+            "something",
+            "nice"
+        ]
+    ],
+    "Let's talk!": [
+        0,
+        1,
+        10,
+        [
+            "lets",
+            "talk"
+        ]
+    ],
+    "Math is fine...": [
+        0,
+        1,
+        10,
+        [
+            "math",
+            "is",
+            "fine"
+        ]
+    ],
+    "No, nothing to do...": [
+        0,
+        1,
+        10,
+        [
+            "no",
+            "nothing",
+            "to",
+            "do"
+        ]
+    ],
+    "Nothing to do?": [
+        0,
+        1,
+        10,
+        [
+            "nothing",
+            "to",
+            "do"
+        ]
+    ],
+    "Nothing...": [
+        0,
+        1,
+        10,
+        [
+            "nothing"
+        ]
+    ],
+    "Okkay, just leave me alone!": [
+        0,
+        1,
+        10,
+        [
+            "okkay",
+            "just",
+            "leave",
+            "me",
+            "alone"
+        ]
+    ],
+    "Okkay, you are funny.": [
+        0,
+        1,
+        10,
+        [
+            "okkay",
+            "you",
+            "are",
+            "funny"
+        ]
+    ],
+    "Okkay.": [
+        0,
+        2,
+        10,
+        [
+            "okkay"
+        ]
+    ],
+    "Thanks!": [
+        0,
+        1,
+        10,
+        [
+            "thanks"
+        ]
+    ],
+    "Then this is a love!": [
+        0,
+        1,
+        10,
+        [
+            "then",
+            "this",
+            "is",
+            "a",
+            "love"
+        ]
+    ],
+    "This is good!": [
+        0,
+        1,
+        10,
+        [
+            "this",
+            "is",
+            "good"
+        ]
+    ],
+    "This is not the answer, you should give...": [
+        0,
+        1,
+        10,
+        [
+            "this",
+            "is",
+            "not",
+            "the",
+            "answer",
+            "you",
+            "should",
+            "give"
+        ]
+    ],
+    "What do you think about mathematics?": [
+        0,
+        1,
+        10,
+        [
+            "what",
+            "do",
+            "you",
+            "think",
+            "about",
+            "mathematics"
+        ]
+    ],
+    "What do you want to do now?": [
+        0,
+        1,
+        10,
+        [
+            "what",
+            "do",
+            "you",
+            "want",
+            "to",
+            "do",
+            "now"
+        ]
+    ],
+    "What wow?": [
+        0,
+        1,
+        10,
+        [
+            "what",
+            "wow"
+        ]
+    ],
+    "What's up?": [
+        0,
+        1,
+        10,
+        [
+            "whats",
+            "up"
+        ]
+    ],
+    "When I ask something, you should answer with something.": [
+        0,
+        1,
+        10,
+        [
+            "when",
+            "i",
+            "ask",
+            "something",
+            "you",
+            "should",
+            "answer",
+            "with",
+            "something"
+        ]
+    ],
+    "Where can this go further?": [
+        0,
+        1,
+        10,
+        [
+            "where",
+            "can",
+            "this",
+            "go",
+            "further"
+        ]
+    ],
+    "Where did you hear this?": [
+        0,
+        1,
+        10,
+        [
+            "where",
+            "did",
+            "you",
+            "hear",
+            "this"
+        ]
+    ],
+    "Wow!": [
+        0,
+        1,
+        10,
+        [
+            "wow"
+        ]
+    ],
+    "Wow, thank you!": [
+        0,
+        1,
+        10,
+        [
+            "wow",
+            "thank",
+            "you"
+        ]
+    ],
+    "Yes, you are really fine!": [
+        0,
+        1,
+        10,
+        [
+            "yes",
+            "you",
+            "are",
+            "really",
+            "fine"
+        ]
+    ],
+    "bye": [
+        0,
+        3,
+        10,
+        [
+            "bye"
+        ]
+    ]
+}
